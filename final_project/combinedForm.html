@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="styles/style.css" class="rel">
+    <title>FORM</title>
+</head>
+<body>
+  <h1 class="title">let's hear it .....</h1>
+    <form class="flexbox-container" action="">
+      <!-- <div class="heading"><h2>..... where are you ?</h2></div> -->
+      <section class="flexbox-item" class="flexbox-item-2">
+        <h2>what city are you in ?</h2>
+            <img src="styles/SVG/Asset 1.svg" class="filter-blue" style="width:100%;"></img>
+            <select class="list" onclick="getSelectedCity()"> 
+              <option value = ""> choose your city</option>   
+              <option value = "['40.730610', '-73.935242']"> new york city</option>
+              <option value = "['34.052235', '-118.243683']"> los angeles</option>
+              <option value = "['41.881832', '-87.623177']"> chicago</option>
+            </select>   
+      </section>   
+      <section class="flexbox-item" class="flexbox-item-2" id="words">
+            <input disabled  maxlength="3" size="3" value="100" id="counter">  
+            <textarea class="words" placeholder="blah blah blah" onkeyup="textCounter(this,'counter',100);" id="message"></textarea>
+            <h2 class="right">what did you overhear ?</h2>
+            <!-- <img src="styles/SVG/Asset 7.svg" class="filter-green"style="width: 10%;"> -->
+      </section>
+      <section class="flexbox-item" class="flexbox-item-3">
+        <div id="map">
+        <pre id="coordinates" class="coordinates"></pre>
+        </div>
+        <h2>where'd you hear that ?</h2>
+      </section>
+    </form>
+    <button type="submit">SUBMIT!!!!</button>
+    <script src="scripts.js"></script>
+</body>
+</html>
