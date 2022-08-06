@@ -9,6 +9,7 @@
 
 body {
   padding: 2%;
+  
 }
 
 h2 {
@@ -27,6 +28,7 @@ h4 {
 form {
   display: flex;
   flex-direction: column;
+  align-items: baseline;
   width: 80%;
   margin: auto;
   background: rgb(230, 230, 230);
@@ -34,14 +36,32 @@ form {
   color: rgb(6, 22, 250);
 }
 
-.container {
-  margin: 20px;
+.flex-container {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* .flex-item {
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 10px;
+} */
+
+
+.flex-item {
+  margin: 20px;
+  flex-wrap: wrap;
   align-items: flex-start;
+  flex-direction: column;
 }
 
 .left, .right {
-  flex-basis: 60%;
+  flex-basis: auto;
 /*   float: left;
   width: 50%;
   padding-bottom: 20px; */
@@ -53,6 +73,15 @@ form {
 
 .right {
   margin-left: 10px;
+}
+
+
+.list {
+  width: auto;
+  height: 25px;
+  margin: 2%;
+  margin-bottom: 10%;
+
 }
 
 .location {
@@ -81,10 +110,21 @@ button {
   color: #FFF;
   background: #f0f;
   border: none;
-  margin: 0 20px 20px 20px;
-  line-height: 30px;
+  width: auto;
+  height: auto;
+  margin: 10px;
+  padding: 1%;
   border-radius: 4px;
+  font-size: 1.5em;
 }
+
+/* button {
+  width: 30%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 25%;
+} */
 
 @media screen and (max-width: 600px) {
   .container { 
@@ -95,10 +135,11 @@ button {
 img{
 
   position : relative;
+  scale: 90%;
   
   }
   
-  p{
+p{
   
   position:absolute;
   
@@ -116,6 +157,32 @@ img{
   filter: invert(54%) sepia(35%) saturate(4075%) hue-rotate(85deg) brightness(121%) contrast(128%);
 }
 
-/* counter{
+.words {
 
-} */
+  height: 80px;
+  
+}
+
+#counter{
+  margin-bottom: 1%;
+  margin-left: 90%;
+  justify-content: right;
+
+}
+
+#map { position: absolute; top: 0; bottom: 0; width: 25%; height: 25%; }
+
+    .coordinates {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        display: none;
+    }
+
