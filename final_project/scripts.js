@@ -155,7 +155,7 @@ function getCityXY() {
   var cityLongLat=cityLongLat0.split(', ');
   console.log(cityLongLat)
   // set center of map
-  map.flyTo({center: cityLongLat, zoom: 7.5});
+  map.flyTo({center: cityLongLat, zoom: cityLongLat[2]});
   return cityLongLat
 }
 
