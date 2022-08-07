@@ -13,7 +13,7 @@
   <h1 class="title">let's hear it .....</h1>
     <form class="flexbox-container" action="">
       <!-- <div class="heading"><h2>..... where are you ?</h2></div> -->
-      <section class="flexbox-item" class="flexbox-item-2">
+      <!-- <section class="flexbox-item" class="flexbox-item-2">
         <h2>what city are you in ?</h2>
             <img src="styles/SVG/Asset 1.svg" class="filter-blue" style="width:100%;"></img>
             <select class="list" onclick="getSelectedCity()"> 
@@ -21,6 +21,17 @@
               <option value = "['40.730610', '-73.935242']"> new york city</option>
               <option value = "['34.052235', '-118.243683']"> los angeles</option>
               <option value = "['41.881832', '-87.623177']"> chicago</option>
+            </select>   
+      </section>    -->
+      <section class="flexbox-item" class="flexbox-item-2" action="action.php" method="post" name="cityForm" id="cityForm">
+        <h2>what city are you in ?</h2>
+            <img src="styles/SVG/Asset 1.svg" class="filter-blue" style="width:100%;"></img>
+            <select class='list' id="list" onchange="getCityXY(this.value);"> 
+                <option value = "-98.5556, 39.8097"> choose your city</option>  
+                <!-- <option value = "-83.091265, 39.156753"> choose your city</option>    -->
+                <option value = "-73.935242, 40.730610"> new york city</option>
+                <option value = "-118.243683, 34.052235"> los angeles</option>
+                <option value = "-87.623177, 41.881832"> chicago</option>
             </select>   
       </section>   
       <section class="flexbox-item" class="flexbox-item-2" id="words">

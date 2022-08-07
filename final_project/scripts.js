@@ -11,17 +11,38 @@ var button = document.querySelector("button");
 
 // City dropdown
 // ----------------------------
-function getSelectedCity()
-{
+// function getSelectedCity()
+// {
 
-  var SelectedCity = document.getElementById("list").value
+//   var SelectedCity = document.getElementById("list").value
   
-console.log(SelectedCity)
+// console.log(SelectedCity)}
 
 // convert dropdown text to a static coordinate centroid now
 
-}
+// function getCityXY(val){ 
+//   var cityLongLat=val.split(', ');
 
+  // var cityLong = parseFloat(cityLongLat[1]); 
+  // var cityLat = parseFloat(cityLongLat[0]);
+  // console.log("Long: " + cityLong)
+  // console.log("Lat: " + cityLat)
+  // console.log(cityLongLat)
+
+  // return cityLongLat
+
+// }
+
+// console.log(getCityXY(cityLongLat))
+
+// const cityLong = cityForm.value=CityLongLat[1];
+// const cityLat = cityForm.value=CityLongLat[0];
+
+// console.log(cityLat)
+// console.log(cityLong)
+
+
+//--
 //OBJECT SETUP
 //----------------------------
 const contact = {
@@ -122,9 +143,21 @@ const coordinates = document.getElementById('coordinates');
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
-    center: [0, 0],
-    zoom: 2
+    center: [-98.5556, 39.8097],
+    zoom: 1.5,
+
 });
+
+function getCityXY() {
+  // get long and lat 
+  // var cityLongLat=val.split(', ');
+  var cityLongLat0 = document.getElementById('list').value
+  var cityLongLat=cityLongLat0.split(', ');
+  console.log(cityLongLat)
+  // set center of map
+  map.flyTo({center: cityLongLat, zoom: 7.5});
+  return cityLongLat
+}
 
 const canvas = map.getCanvasContainer();
 
@@ -135,7 +168,7 @@ const geojson = {
             'type': 'Feature',
             'geometry': {
                 'type': 'Point',
-                'coordinates': [0, 0]
+                'coordinates': [cityLongLat]
             }
         }
     ]
@@ -215,5 +248,17 @@ map.on('load', () => {
         map.on('touchmove', onMove);
         map.once('touchend', onUp);
     });
+
 });
 
+// map.flyTo({center: [cityLongLat], zoom: 9});
+
+// if 
+
+// else center: [0, 0]
+
+// var map = new mapboxgl.Map({
+//   container: 'map', // container id
+//   style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+//   center: [lng, lat], // starting position [lng, lat]
+//   zoom: 9 // starting zoom
