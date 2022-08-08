@@ -23,15 +23,15 @@
               <option value = "['41.881832', '-87.623177']"> chicago</option>
             </select>   
       </section>    -->
-      <section class="flexbox-item" class="flexbox-item-2" action="action.php" method="post" name="cityForm" id="cityForm">
+      <section class="flexbox-item" class="flexbox-item-2" action="action.php" method="post">
         <h2>what city are you in ?</h2>
             <img src="styles/SVG/Asset 1.svg" class="filter-blue" style="width:100%;"></img>
-            <select class='list' id="list" onchange="getCityXY(this.value);"> 
-                <option value = "-83.091265, 39.156753, 1.5"> choose your city</option>  
+            <select class='list' id="list"> 
+                <option value = "-83.091265, 39.156753, 2"> choose your city</option>  
                 <!-- <option value = "-83.091265, 39.156753"> choose your city</option>    -->
-                <option value = "-73.935242, 40.730610, 8.5"> new york city</option>
-                <option value = "-118.243683, 34.052235, 7.5"> los angeles</option>
-                <option value = "-87.623177, 41.881832, 7.5"> chicago</option>
+                <option value = "-73.935242, 40.730610, 9.5"> new york city</option>
+                <option value = "-118.243683, 34.052235, 8"> los angeles</option>
+                <option value = "-87.623177, 41.881832, 8.5"> chicago</option>
             </select>   
       </section>   
       <section class="flexbox-item" class="flexbox-item-2" id="words">
@@ -41,9 +41,8 @@
             <!-- <img src="styles/SVG/Asset 7.svg" class="filter-green"style="width: 10%;"> -->
       </section>
       <section class="flexbox-item" class="flexbox-item-3">
-        <div id="map">
+        <div id="map"></div>
         <pre id="coordinates" class="coordinates"></pre>
-        </div>
         <h2>where'd you hear that ?</h2>
       </section>
     </form>

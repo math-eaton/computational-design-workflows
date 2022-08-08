@@ -3,7 +3,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: content-box;
   font-family: 'Source Code Pro', monospace;
 }
 
@@ -49,6 +49,7 @@ form {
   padding: 2%;
   margin: 2%;
   border: .2em solid blue;
+  flex-grow: .5;
 
 }
 
@@ -59,6 +60,7 @@ form {
   align-self: flex-end;
   order: 1;
   flex-shrink: 1;
+  flex-grow: 0;
 }
 
 .flexbox-item-2 {
@@ -69,12 +71,13 @@ form {
   align-self: center;
   order: 2;
   flex-shrink: 1;
+  flex-grow: 1;
 }
 
 .flexbox-item-3 {
   /* map */
-  /* min-height: 300px;
-  min-width: 100%; */
+  /* min-height: 500px; */
+  /* min-width: 50%; */
   flex-shrink: 0;
   flex-grow: 2;
   align-self: center;
@@ -119,7 +122,7 @@ input[type="email"] {
 } */
 
 textarea {
-  min-width: 350px;
+  width: 450px;
   padding: 15px;
   margin: 10px 10px 10px 10px;
   border: 3px #f0f;
@@ -192,16 +195,16 @@ p{
 
 }
 
-#map { min-width: 100%; min-height: 200px; margin-bottom: 10px}
+#map { min-width: 100%; min-height: 400px; margin-bottom: 10px}
 
     .coordinates {
         background: rgba(0, 0, 0, 0.5);
         color: #fff;
-        bottom: 40px;
+        bottom: 10px;
         left: 10px;
         padding: 5px 10px;
         margin: 0;
-        font-size: 11px;
+        font-size: 15px;
         line-height: 18px;
         border-radius: 3px;
         display: none;

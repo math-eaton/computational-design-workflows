@@ -73,18 +73,18 @@ const addNewContact = (e) => {
 form.addEventListener("submit", addNewContact);
 
   // pass object into display function
-	// displayContact(contactObject);
+	displayContact(contactObject);
   
   //add object to array
 	contact.contactList.push(contactObject);
   console.log(contact)
   //store in local storage
-	// localStorage.setItem("contact", JSON.stringify(contact));
+	localStorage.setItem("contact", JSON.stringify(contact));
 
-  // var selected = new Array();
-  // $('.cityInput option:selected').each(function() {
-  //     selected.push($(this).val());
-  // });
+  var selected = new Array();
+  $('.cityInput option:selected').each(function() {
+      selected.push($(this).val());
+  });
 
 	//clear form
 	form.reset();
@@ -143,36 +143,55 @@ const coordinates = document.getElementById('coordinates');
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
-    center: [-98.5556, 39.8097],
-    zoom: 1.5,
+    // pitch: 45,
 
 });
+
+document.getElementById("list").onchange = getCityXY;
+document.getElementById("list").onchange = onLoad;
+
 
 function getCityXY() {
   // get long and lat 
   // var cityLongLat=val.split(', ');
-  var cityLongLat0 = document.getElementById('list').value
-  var cityLongLat=cityLongLat0.split(', ');
-  console.log(cityLongLat)
+  var cityLongLat = document.getElementById('list').value
+  var centerPoint=cityLongLat.split(', ');
   // set center of map
-  map.flyTo({center: cityLongLat, zoom: cityLongLat[2]});
-  return cityLongLat
+  map.flyTo({center: centerPoint, zoom: centerPoint[2]});
+  return centerPoint
 }
 
+const centerPoint = getCityXY()
+var cityLat = parseFloat(centerPoint[0]);
+var cityLong = parseFloat(centerPoint[1]); 
+
+console.log(centerPoint + " Long: " + cityLong + " Lat: " + cityLat)
 const canvas = map.getCanvasContainer();
 
 const geojson = {
-    'type': 'FeatureCollection',
-    'features': [
-        {
-            'type': 'Feature',
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [cityLongLat]
-            }
-        }
-    ]
-};
+  'type': 'FeatureCollection',
+  'features': [
+      {
+          'type': 'Feature',
+          'geometry': {
+              'type': 'Point',
+              'coordinates': [
+                -83.091265, 39.156753
+                ]
+              
+          }
+      }
+  ]
+}
+
+function onLoad(e) {
+  const centerPoint = getCityXY()
+
+  // Update the Point feature in `geojson` coordinates
+  // and call setData to the source layer `point` on it.
+  geojson.features[0].geometry.coordinates = [centerPoint[0], centerPoint[1]];
+  map.getSource('point').setData(geojson);
+}
 
 function onMove(e) {
     const coords = e.lngLat;
