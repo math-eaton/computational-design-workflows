@@ -1,46 +1,16 @@
 console.log('ok...')
 
+const token = config.MAPBOX_TOKEN
 
 // Structure
 //----------------------------
 const form = document.querySelector("form");
-const SelectedCity = document.querySelector(".list")
+// const SelectedCity = document.querySelector(".list")
+// think about selected city  later. this can maybe bin form results together
 const wordsInput = document.querySelector(".words");
-const locationInput = document.querySelector(".location");
+const locationInput = document.querySelector(".coordinates");
+console.log(locationInput)
 var button = document.querySelector("button");
-
-// City dropdown
-// ----------------------------
-// function getSelectedCity()
-// {
-
-//   var SelectedCity = document.getElementById("list").value
-  
-// console.log(SelectedCity)}
-
-// convert dropdown text to a static coordinate centroid now
-
-// function getCityXY(val){ 
-//   var cityLongLat=val.split(', ');
-
-  // var cityLong = parseFloat(cityLongLat[1]); 
-  // var cityLat = parseFloat(cityLongLat[0]);
-  // console.log("Long: " + cityLong)
-  // console.log("Lat: " + cityLat)
-  // console.log(cityLongLat)
-
-  // return cityLongLat
-
-// }
-
-// console.log(getCityXY(cityLongLat))
-
-// const cityLong = cityForm.value=CityLongLat[1];
-// const cityLat = cityForm.value=CityLongLat[0];
-
-// console.log(cityLat)
-// console.log(cityLong)
-
 
 //--
 //OBJECT SETUP
@@ -49,46 +19,41 @@ const contact = {
 	"contactList": []
 }
 
-
 // Event Handlers
 //----------------------------
 const addNewContact = (e) => {
   e.preventDefault();
   
   // variable for values entered in the form
-  const newCity = SelectedCity.value;
+  // const newCity = SelectedCity.value;
   const newWords = wordsInput.value;
-  const newLocation = locationInput.value;
+  const newLocation = coordinates.value;
   
   // store in a JSON object
   contactObject = {
-		city: newCity,
+		// city: newCity,
 		words: newWords,
     location: newLocation,
 		completed: false,
 	}
-  
-// Events
-//----------------------------
-form.addEventListener("submit", addNewContact);
 
-  // pass object into display function
-	displayContact(contactObject);
+  // // pass object into display function
+	// displayContact(contactObject);
   
   //add object to array
 	contact.contactList.push(contactObject);
   console.log(contact)
   //store in local storage
-	localStorage.setItem("contact", JSON.stringify(contact));
-
-  var selected = new Array();
-  $('.cityInput option:selected').each(function() {
-      selected.push($(this).val());
-  });
+	// localStorage.setItem("contact", JSON.stringify(contact));
 
 	//clear form
 	form.reset();
 }
+
+// Events
+//----------------------------
+form.addEventListener("submit", addNewContact);
+
 
 //text counter
 //----------------------------
@@ -137,7 +102,7 @@ form.addEventListener('submit', (e) => {
 //MAPBOX!!!!!!!!!!!!!!!!!!
 
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWpoMjI0MSIsImEiOiJjbDZhNWdtdWcwemYwM2Nyejg4azR6MjdtIn0.jcFs6eofGMkSv7Gokq_b6A';
+mapboxgl.accessToken = token;
 const coordinates = document.getElementById('coordinates');
 // let defaultCoord = 
 const map = new mapboxgl.Map({
@@ -185,12 +150,12 @@ const geojson = {
 }
 
 function onLoad(e) {
-  const centerPoint = getCityXY()
+    const centerPoint = getCityXY()
 
-  // Update the Point feature in `geojson` coordinates
-  // and call setData to the source layer `point` on it.
-  geojson.features[0].geometry.coordinates = [centerPoint[0], centerPoint[1]];
-  map.getSource('point').setData(geojson);
+    // Update the Point feature in `geojson` coordinates to the selected city extent
+    // and call setData to the source layer `point` on it.
+    geojson.features[0].geometry.coordinates = [centerPoint[0], centerPoint[1]];
+    map.getSource('point').setData(geojson);
 }
 
 function onMove(e) {
@@ -231,7 +196,7 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'point',
         'paint': {
-            'circle-radius': 10,
+            'circle-radius': 15,
             'circle-color': '#F84C4C' // red color
         }
     });

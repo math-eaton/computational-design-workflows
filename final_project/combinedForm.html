@@ -7,7 +7,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="styles/style.css" class="rel">
-    <title>FORM</title>
+    <title>INPUT FORM</title>
 </head>
 <body>
   <h1 class="title">let's hear it .....</h1>
@@ -32,6 +32,7 @@
                 <option value = "-73.935242, 40.730610, 9.5"> new york city</option>
                 <option value = "-118.243683, 34.052235, 8"> los angeles</option>
                 <option value = "-87.623177, 41.881832, 8.5"> chicago</option>
+                <option value = "-83.091265, 39.156753, 2"> (other)</option>
             </select>   
       </section>   
       <section class="flexbox-item" class="flexbox-item-2" id="words">
@@ -43,10 +44,11 @@
       <section class="flexbox-item" class="flexbox-item-3">
         <div id="map"></div>
         <pre id="coordinates" class="coordinates"></pre>
-        <h2>where'd you hear that ?</h2>
+        <h2>where'd you hear that ? (drag the point)</h2>
       </section>
     </form>
     <button type="submit">SUBMIT!!!!</button>
+    <script src="config.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

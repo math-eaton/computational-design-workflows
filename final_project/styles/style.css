@@ -131,13 +131,20 @@ textarea {
 button {
   color: #FFF;
   background: #f0f;
-  border: none;
+  border: solid, blue;
   width: auto;
   height: auto;
   margin: 10px;
   padding: 1%;
   border-radius: 4px;
   font-size: 1.5em;
+}
+
+button:hover {
+  background: #FFF;
+  color: #f0f;
+  cursor: pointer;
+  border: solid, blue;
 }
 
 /* button {
