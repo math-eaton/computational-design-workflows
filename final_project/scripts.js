@@ -8,9 +8,10 @@ const form = document.querySelector("form");
 // const SelectedCity = document.querySelector(".list")
 // think about selected city  later. this can maybe bin form results together
 const wordsInput = document.querySelector(".words");
-const locationInput = document.querySelector(".coordinates");
-console.log(locationInput)
+// const locationInput = document.querySelector(".coordinates.innerHTML");
+// console.log(locationInput)
 var button = document.querySelector("button");
+// const coords = 
 
 //--
 //OBJECT SETUP
@@ -27,7 +28,8 @@ const addNewContact = (e) => {
   // variable for values entered in the form
   // const newCity = SelectedCity.value;
   const newWords = wordsInput.value;
-  const newLocation = coordinates.value;
+  const newLocation = updatedPointCoordinates;
+  console.log(updatedPointCoordinates)
   
   // store in a JSON object
   contactObject = {
@@ -68,10 +70,10 @@ function textCounter(field,field2,maxlimit)
  }
 
  if(countfield.value <= 10){
-  counter.style.color = 'red';
+  counter.style.color = '#f0f';
   counter.style.fontWeight = 'bold'
 } else {
-  counter.style.color = 'black';
+  counter.style.color = 'blue';
   counter.style.fontWeight = 'normal'
 }
 }
@@ -171,18 +173,31 @@ function onMove(e) {
 }
 
 function onUp(e) {
-    const coords = e.lngLat;
+    coords = e.lngLat;
 
     // Print the coordinates of where the point had
     // finished being dragged to on the map.
     coordinates.style.display = 'block';
     coordinates.innerHTML = `Longitude: ${coords.lng}<br />Latitude: ${coords.lat}`;
+    // coordinates.innerHTML = [coords.lng, coords.lat]
+    // console.log([coords.lng, coords.lat])
+    // var updatedPointCoordinates = [coords.lng, coords.lat]
     canvas.style.cursor = '';
 
     // Unbind mouse/touch events
     map.off('mousemove', onMove);
     map.off('touchmove', onMove);
+    
+
+    // return updatedPointCoordinates
+
+    console.log([coords.lng, coords.lat])
+    console.log(coords)
+
 }
+
+// const updatedPointCoordinates = coordinates.innerHTML
+// console.log(updatedPointCoordinates)
 
 map.on('load', () => {
     // Add a single point to the map.
@@ -246,3 +261,5 @@ map.on('load', () => {
 //   style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
 //   center: [lng, lat], // starting position [lng, lat]
 //   zoom: 9 // starting zoom
+
+// POETRY MAP PAGE

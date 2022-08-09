@@ -46,6 +46,7 @@ form {
 
 .flexbox-item {
   /* min-width: 100px; */
+  /* max-height: 350px; */
   padding: 2%;
   margin: 2%;
   border: .2em solid blue;
@@ -55,7 +56,7 @@ form {
 
 .flexbox-item-1 {
 
-  /* min-height: 100px; */
+  height: 100px;
   max-width: 500px;
   align-self: flex-end;
   order: 1;
@@ -84,6 +85,23 @@ form {
   order: 3;
 }
 
+.flexbox-item-4 {
+
+  min-width: 750px;
+  flex-shrink: 0;
+  flex-grow: 2;
+  align-self: center;
+  order: 4;
+}
+
+.flexbox-item-5 {
+  
+  min-width: 250px;
+  flex-shrink: 1;
+  align-self: right;
+  order: 5;
+}
+
 /* .left, .right {
   flex-basis: auto;
 
@@ -106,9 +124,9 @@ form {
 
 }
 
-.location {
+/* .location {
   margin-left: 125px;
-}
+} */
 
 /* input[type="text"],
 input[type="subject"],
@@ -123,6 +141,7 @@ input[type="email"] {
 
 textarea {
   width: 450px;
+  min-width: 85%;
   padding: 15px;
   margin: 10px 10px 10px 10px;
   border: 3px #f0f;
@@ -166,7 +185,7 @@ img{
   display : flex;
   max-width: 100%;
   min-width: 0%;
-  scale: 90%;
+  scale: 85%;
   padding: 5px;
   
   }
@@ -186,7 +205,9 @@ p{
 }
 
 .filter-green{
-  filter: invert(54%) sepia(35%) saturate(4075%) hue-rotate(85deg) brightness(121%) contrast(128%);
+  filter: invert(54%) sepia(35%) saturate(4075%) hue-rotate(85deg) brightness(175%) contrast(128%);
+  width: 15%; 
+  margin-left: 85%;
 }
 
 .words {
@@ -199,6 +220,9 @@ p{
   margin-bottom: 1%;
   margin-left: 90%;
   justify-content: right;
+  color: blue;
+  border: none;
+  font-size: 1em;
 
 }
 
