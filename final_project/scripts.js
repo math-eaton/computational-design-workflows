@@ -1,7 +1,7 @@
 console.log('ok...')
 
 const token = config.MAPBOX_TOKEN
-
+let latitude, longitude;
 // Structure
 //----------------------------
 const form = document.querySelector("form");
@@ -11,50 +11,89 @@ const wordsInput = document.querySelector(".words");
 // const locationInput = document.querySelector(".coordinates.innerHTML");
 // console.log(locationInput)
 var button = document.querySelector("button");
+let poemContainer = document.querySelector('ul');
+
 // const coords = 
+// const coords
 
 //--
 //OBJECT SETUP
 //----------------------------
-const contact = {
-	"contactList": []
+const poem = {
+	"poemList": []
 }
 
 // Event Handlers
 //----------------------------
-const addNewContact = (e) => {
+function pageLoadFn(event){
+  if(localStorage.getItem('poems') === null){
+    return
+  } else {
+    poems = JSON.parse(localStorage.getItem('poems'))
+    poems.poemList.forEach(displayPoem)
+  }
+}
+
+const addNewPoem = (e) => {
   e.preventDefault();
-  
+  console.log('clicked')
   // variable for values entered in the form
   // const newCity = SelectedCity.value;
   const newWords = wordsInput.value;
-  const newLocation = updatedPointCoordinates;
-  console.log(updatedPointCoordinates)
-  
+  const newLocation = {longitude, latitude};
+
+  console.log(newWords, newLocation)
+
+
   // store in a JSON object
-  contactObject = {
+  poemObject = {
 		// city: newCity,
 		words: newWords,
     location: newLocation,
-		completed: false,
+		completed: false
 	}
 
+  console.log(poemObject)
+  displayPoem(poemObject);
+
   // // pass object into display function
-	// displayContact(contactObject);
   
   //add object to array
-	contact.contactList.push(contactObject);
-  console.log(contact)
+	poem.poemList.push(poemObject);
+  console.log(poem)
   //store in local storage
-	// localStorage.setItem("contact", JSON.stringify(contact));
+	localStorage.setItem("poems", JSON.stringify(poem));
 
 	//clear form
 	form.reset();
+
 }
+
+function displayPoem(poem){
+  console.log(poem) // {name: 'hello'}
+  if(poem == "") return null
+
+  // let account_name = 'Celeste Layne'
+  // let twitter_handle = '@bot'
+
+  let newListItem = document.createElement('li');
+
+  newListItem.textContent = `${poem.words}`
+  poemContainer.appendChild(newListItem);
+
+  const marker = new mapboxgl.Marker()
+  .setLngLat([poem.location.longitude, poem.location.latitude])
+  .addTo(map); // add the marker to the map
+  
+  }
+
+  form.reset()
+  
 
 // Events
 //----------------------------
-form.addEventListener("submit", addNewContact);
+button.addEventListener("click", addNewPoem);
+window.addEventListener('load', pageLoadFn);
 
 
 //text counter
@@ -162,7 +201,7 @@ function onLoad(e) {
 
 function onMove(e) {
     const coords = e.lngLat;
-
+    // console.log(coords)
     // Set a UI indicator for dragging.
     canvas.style.cursor = 'grabbing';
 
@@ -174,14 +213,13 @@ function onMove(e) {
 
 function onUp(e) {
     coords = e.lngLat;
+    console.log(coords)
 
     // Print the coordinates of where the point had
     // finished being dragged to on the map.
     coordinates.style.display = 'block';
     coordinates.innerHTML = `Longitude: ${coords.lng}<br />Latitude: ${coords.lat}`;
-    // coordinates.innerHTML = [coords.lng, coords.lat]
-    // console.log([coords.lng, coords.lat])
-    // var updatedPointCoordinates = [coords.lng, coords.lat]
+
     canvas.style.cursor = '';
 
     // Unbind mouse/touch events
@@ -190,9 +228,10 @@ function onUp(e) {
     
 
     // return updatedPointCoordinates
-
-    console.log([coords.lng, coords.lat])
-    console.log(coords)
+    latitude = coords.lat;
+    longitude = coords.lng
+    // console.log([coords.lng, coords.lat])
+    // console.log(coords)
 
 }
 
